@@ -3,3 +3,5 @@
 /obj
 .fake
 .ionide
+/Samples
+.gitignore

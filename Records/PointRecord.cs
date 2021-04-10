@@ -5,5 +5,7 @@ namespace ShpToWkt.Records
         public double X { get; init; }
 
         public double Y { get; init; }
+
+        public Types.Point Coordinate => new Types.Point(X, Y);
     }
 }

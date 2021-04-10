@@ -8,10 +8,10 @@ namespace ShpToWkt.Types
         public double Latitude { get; init; }
         public double Longitude { get; init; }
 
-        public static implicit operator Point((double lat, double lng) tuple)
+        public static implicit operator Point((double lng, double lat) tuple)
             => new Point(tuple.lng, tuple.lat);
 
-        public void Deconstruct(out double latitude, out double longitude)
-            => (latitude, longitude) = (Latitude, Longitude);
+        public void Deconstruct(out double longitude, out double latitude)
+            => (longitude, latitude) = (Longitude, Latitude);
     }
 }

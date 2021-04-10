@@ -99,7 +99,7 @@ namespace ShpToWkt
                 }
             }
 
-            while (stream.Position <= stream.Length)
+            while (stream.Position < stream.Length)
             {
                 records.Add(await stream.ReadRecord());
             }

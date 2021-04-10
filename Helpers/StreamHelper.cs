@@ -67,5 +67,27 @@ namespace ShpToWkt
 
         public static async Task<Types.Box> ReadBox(this Stream stream)
             => new Types.Box(await stream.ReadPoint(), await stream.ReadPoint());
+
+        public static async Task Write(this Stream stream, byte[] buffer, bool bigEndian)
+        {
+            if (BitConverter.IsLittleEndian == bigEndian)
+            {
+                Array.Reverse(buffer);
+            }
+
+            await stream.WriteAsync(buffer);
+        }
+
+        public static async Task Write(this Stream stream, int x, bool bigEndian = true)
+            => await stream.Write(BitConverter.GetBytes(x), bigEndian);
+
+        public static async Task Write(this Stream stream, double x, bool bigEndian = true)
+            => await stream.Write(BitConverter.GetBytes(x), bigEndian);
+
+        public static async Task Write(this Stream stream, uint x, bool bigEndian = true)
+            => await stream.Write(BitConverter.GetBytes(x), bigEndian);
+
+        public static void Write(this Stream stream, byte x)
+            => stream.WriteByte(x);
     }
 }
